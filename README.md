@@ -17,7 +17,7 @@ Interim solution to adapt Vert.X ReadStream to Rxjva2's Flowable. Use Vert.X Eve
       <version>1.0.0</version>
     </dependency>
 
-# Example: [FlowableReadStream](blob/master/src/main/com/blueskiron/vertx/rxjava2/FlowableReadStream)
+# Example: [FlowableReadStream](https://github.com/jurajzachar/vertx-rxjava2/blob/master/src/main/java/com/blueskiron/vertx/rxjava2/FlowableReadStream.java)
 Simply wrap [ReadStream](http://reactivex.io/RxJava/2.x/javadoc/) and use normal [Flowable](http://reactivex.io/RxJava/2.x/javadoc/):
 
     FileSystem fs = getVertx().fileSystem();
@@ -30,7 +30,7 @@ Simply wrap [ReadStream](http://reactivex.io/RxJava/2.x/javadoc/) and use normal
         }
       });
 
-# Example: [FlowableEventbusPublisher](blob/master/src/main/com/blueskiron/vertx/rxjava2/FlowableEventbusPublisher) and [FlowableEventBusSubscriber](blob/master/src/main/com/blueskiron/vertx/rxjava2/FlowableEventbusSubscriber)
+# Example: [FlowableEventbusPublisher](https://github.com/jurajzachar/vertx-rxjava2/blob/master/src/main/java/com/blueskiron/vertx/rxjava2/FlowableEventBusPublisher.java) and [FlowableEventBusSubscriber](https://github.com/jurajzachar/vertx-rxjava2/blob/master/src/main/java/com/blueskiron/vertx/rxjava2/FlowableEventBusSubscriber.java)
 
     FileSystem fs = getVertx().fileSystem();
       fs.open(FILEPATH.toAbsolutePath().toString(), new OpenOptions().setRead(true), ar -> {
