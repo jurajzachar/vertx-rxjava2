@@ -30,6 +30,7 @@ Simply wrap [ReadStream](http://reactivex.io/RxJava/2.x/javadoc/) and use normal
           flowable.subscribe(new PacedTestSubscriber(getVertx(), async, 1000));
         }
       });
+      ```
 
 # Example: [FlowableEventbusPublisher](https://github.com/jurajzachar/vertx-rxjava2/blob/master/src/main/java/com/blueskiron/vertx/rxjava2/FlowableEventBusPublisher.java) and [FlowableEventBusSubscriber](https://github.com/jurajzachar/vertx-rxjava2/blob/master/src/main/java/com/blueskiron/vertx/rxjava2/FlowableEventBusSubscriber.java)
 
@@ -46,3 +47,4 @@ Simply wrap [ReadStream](http://reactivex.io/RxJava/2.x/javadoc/) and use normal
           busSubscriber.subscribe(new PacedTestSubscriber(getVertx(), async, 50));
         }
       });
+      ```
