@@ -57,7 +57,7 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
 	}
 	
 	/**
-	 * * Creates a {@link Flowable<R>} from the underlying
+	 * Creates a {@link Flowable<R>} from the underlying
 	 * {@link ReadStream<T>}, applying {@link Function<T, R>} to each emitted element by the stream.
 	 * 
 	 * @param stream
@@ -70,6 +70,18 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
 		return flowableStream;
 	}
 	
+	/**
+	 * Creates a {@link Flowable<R>} from the underlying
+   * {@link ReadStream<T>}, applying {@link Function<T, R>} to each emitted element by the stream.
+	 * @param stream
+	 * @return
+	 */
+	public static <T> FlowableReadStream<T, T> genericReadStream(ReadStream<T> stream){
+	    FlowableReadStream<T, T> flowableStream = new FlowableReadStream<>();
+	    flowableStream.backing = new ReadStreamSubscription<>(stream, t -> t);
+	    return flowableStream;
+	  }
+	 
 	@Override
 	protected void subscribeActual(Subscriber<? super R> subscriber) {
 		if (backing.child != null) {
