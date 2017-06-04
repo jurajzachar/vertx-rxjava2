@@ -17,7 +17,7 @@ Interim solution to adapt Vert.X ReadStream to Rxjva2's Flowable. Use Vert.X Eve
       <version>1.0.0</version>
     </dependency>
 
-# Example: [FlowableReadStream](src/main/com/blueskiron/vertx/rxjava2/FlowableReadStream)
+# Example: [FlowableReadStream](blob/master/src/main/com/blueskiron/vertx/rxjava2/FlowableReadStream)
 Simply wrap [ReadStream](http://reactivex.io/RxJava/2.x/javadoc/) and use normal [Flowable](http://reactivex.io/RxJava/2.x/javadoc/):
 
     FileSystem fs = getVertx().fileSystem();
@@ -30,7 +30,7 @@ Simply wrap [ReadStream](http://reactivex.io/RxJava/2.x/javadoc/) and use normal
         }
       });
 
-# Example: [FlowableEventbusPublisher](src/main/com/blueskiron/vertx/rxjava2/FlowableEventbusPublisher) and [FlowableEventBusSubscriber](rc/main/com/blueskiron/vertx/rxjava2/FlowableEventbusSubscriber)
+# Example: [FlowableEventbusPublisher](blob/master/src/main/com/blueskiron/vertx/rxjava2/FlowableEventbusPublisher) and [FlowableEventBusSubscriber](blob/master/src/main/com/blueskiron/vertx/rxjava2/FlowableEventbusSubscriber)
 
     FileSystem fs = getVertx().fileSystem();
       fs.open(FILEPATH.toAbsolutePath().toString(), new OpenOptions().setRead(true), ar -> {
