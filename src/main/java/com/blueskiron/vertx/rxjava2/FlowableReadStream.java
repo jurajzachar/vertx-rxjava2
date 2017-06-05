@@ -239,6 +239,6 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
 	 * @return
 	 */
 	public static final RecordParser createLineParser(Handler<Buffer> dataHandler) {
-		return RecordParser.newDelimited("\n", dataHandler);
+		return RecordParser.newDelimited(System.lineSeparator(), dataHandler);
 	}
 }
