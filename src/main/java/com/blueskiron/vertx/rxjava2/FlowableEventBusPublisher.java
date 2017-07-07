@@ -42,7 +42,7 @@ public class FlowableEventBusPublisher<T> {
    * @param vertx
    * @param sourceAddress
    */
-  FlowableEventBusPublisher(Flowable<T> publisher, Vertx vertx, String sourceAddress) {
+  public FlowableEventBusPublisher(Flowable<T> publisher, Vertx vertx, String sourceAddress) {
     this.publisher = publisher.share();
     bus = vertx.eventBus();
     this.sourceAddress = sourceAddress;
