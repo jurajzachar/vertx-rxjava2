@@ -33,7 +33,7 @@ public class TestFlowableReadStream extends AbstractTest{
       if (ar.failed()) {
         context.fail(ar.cause());
       } else {
-        Flowable<Buffer> flowable = FlowableReadStream.newLineDelimitedReadStream(ar.result());
+        Flowable<Buffer> flowable = FlowableReadStream.newLineUnixDelimitedReadStream(ar.result());
         LOG.debug("Subcribing slow consumer to ReadStream<Buffer>...");
         flowable.subscribe(new PacedTestSubscriber(getVertx(), async, 1000));
       }

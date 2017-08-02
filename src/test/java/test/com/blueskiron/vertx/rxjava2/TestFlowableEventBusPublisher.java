@@ -33,7 +33,7 @@ public class TestFlowableEventBusPublisher extends AbstractTest {
       if (ar.failed()) {
         context.fail(ar.cause());
       } else {
-        Flowable<Buffer> flowable = FlowableReadStream.newLineDelimitedReadStream(ar.result());
+        Flowable<Buffer> flowable = FlowableReadStream.newLineUnixDelimitedReadStream(ar.result());
         String sourceAddress = "testSourceAddress";
         new FlowableEventBusPublisher<>(flowable, getVertx(), sourceAddress, new DeliveryOptions());
         FlowableEventBusSubscriber<Buffer> busSubscriber = new FlowableEventBusSubscriber<>(getVertx(), sourceAddress, "testSubscriberAddress");

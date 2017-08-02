@@ -3,14 +3,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.blueskiron</groupId>
   <artifactId>vertx-rxjava2</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <vertx.version>3.4.1</vertx.version>
-    <rxjava2.version>2.1.0</rxjava2.version>
+    <vertx.version>3.4.2</vertx.version>
+    <rxjava2.version>2.1.2</rxjava2.version>
   </properties>
 
   <dependencies>
