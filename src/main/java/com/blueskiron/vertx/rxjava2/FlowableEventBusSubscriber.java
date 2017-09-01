@@ -14,8 +14,7 @@ import io.vertx.core.json.JsonObject;
 /**
  * @author Juraj Zachar (juraj.zachar@gmail.com)
  *
- * @param <T>
- *          MarketData
+ * @param <T> type of stream. 
  */
 public class FlowableEventBusSubscriber<T> implements Publisher<T> {
 	private final Vertx vertx;
@@ -27,8 +26,9 @@ public class FlowableEventBusSubscriber<T> implements Publisher<T> {
 	private Subscriber<? super T> subscriber = null;
 	
 	/**
-	 * @param bus
-	 * @param feedAddress
+	 * @param vertx a valid {@link Vertx} instance.
+	 * @param sourceAddress address which is used to consume stream from.
+	 * @param subscriberAddress address which is used by the underlying subscriber.
 	 */
 	public FlowableEventBusSubscriber(Vertx vertx, String sourceAddress, String subscriberAddress) {
 		this.vertx = vertx;

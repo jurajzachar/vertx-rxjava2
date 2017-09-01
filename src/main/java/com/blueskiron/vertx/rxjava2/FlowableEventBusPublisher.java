@@ -18,15 +18,17 @@ import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.eventbus.Message;
+import io.vertx.core.eventbus.MessageConsumer;
+import io.vertx.core.eventbus.MessageProducer;
 import io.vertx.core.json.JsonObject;
 
 /**
  * A reusable {@link MessageProducer} that exposes {@link Flowable} to
- * subscribed {@link MessageConsumers}.
+ * subscribed {@link MessageConsumer}.
  * 
  * @author Juraj Zachar (juraj.zachar@gmail.com)
  *
- * @param <T>
+ * @param <T> type of stream.
  */
 public class FlowableEventBusPublisher<T> {
 
@@ -38,9 +40,9 @@ public class FlowableEventBusPublisher<T> {
   private DeliveryOptions deliveryOptions = new DeliveryOptions();
 
   /**
-   * @param publisher
-   * @param vertx
-   * @param sourceAddress
+   * @param publisher the stream publisher.
+   * @param vertx a vaild {@link Vertx} instance.
+   * @param sourceAddress address which is used to forward stream to.
    */
   public FlowableEventBusPublisher(Flowable<T> publisher, Vertx vertx, String sourceAddress) {
     this.publisher = publisher.share();
@@ -50,10 +52,10 @@ public class FlowableEventBusPublisher<T> {
   }
 
   /**
-   * @param publisher
-   * @param vertx
-   * @param sourceAddress
-   * @param deliveryOptions
+   * @param publisher the stream publisher.
+   * @param vertx a vaild {@link Vertx} instance.
+   * @param sourceAddress address which is used to forward stream to.
+   * @param deliveryOptions Delivery options that are to be used for {@link EventBus} communication.
    */
   public FlowableEventBusPublisher(Flowable<T> publisher, Vertx vertx, String sourceAddress,
       DeliveryOptions deliveryOptions) {
@@ -107,8 +109,8 @@ public class FlowableEventBusPublisher<T> {
   }
 
   /**
-   * @param deliveryOptions
-   * @return
+   * @param deliveryOptions Delivery options that are to be used for {@link EventBus} communication.
+   * @return FlowableEventBusPublisher.
    */
   public FlowableEventBusPublisher<T> setDeliveryOptions(DeliveryOptions deliveryOptions) {
     this.deliveryOptions = deliveryOptions;

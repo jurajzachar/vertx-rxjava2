@@ -56,6 +56,13 @@
     </dependency>
   </dependencies>
 
+  <pluginRepositories>
+    <pluginRepository>
+      <id>synergian-repo</id>
+      <url>https://raw.github.com/synergian/wagon-git/releases</url>
+    </pluginRepository>
+  </pluginRepositories>
+
   <build>
     <plugins>
       <plugin>
@@ -117,6 +124,21 @@
         </executions>
       </plugin>
     </plugins>
+    <extensions>
+      <extension>
+        <groupId>ar.com.synergian</groupId>
+        <artifactId>wagon-git</artifactId>
+        <version>0.2.5</version>
+      </extension>
+    </extensions>
   </build>
+
+  <distributionManagement>
+    <repository>
+      <id>com.blueskiron-public-repo</id>
+      <name>com.blueskiron maven public</name>
+      <url>git:releases://git@github.com:jurajzachar/com.blueskiron-public-repo.git</url>
+    </repository>
+  </distributionManagement>
 
 </project>

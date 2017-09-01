@@ -14,9 +14,10 @@ import io.vertx.core.parsetools.RecordParser;
 import io.vertx.core.streams.ReadStream;
 
 /**
+ * @param <T> type of {@link ReadStream}.
+ * @param <R> type of {@link Flowable}.
+ * 
  * @author (Juraj Zachar) juraj.zachar@gmail.com
- *
- * @param <T>
  */
 public class FlowableReadStream<T, R> extends Flowable<R> {
 
@@ -26,15 +27,14 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
   }
 
   /**
-   * Creates a {@link Flowable<Buffer>} from the underlying
-   * {@link ReadStream<Buffer>}.
+   * Creates {@link Flowable} from the underlying {@link ReadStream}.
    * 
-   * @param bufferStream
-   * @param recordParser
-   *          buffer handler to apply before it's emitted as flowable stream.
-   * @return
+   * @param bufferStream the underlying {@link Buffer} stream.
+   * @param recordParser a {@link RecordParser} used to process the stream.
+   * @return a {@link Flowable} that is backed by {@link ReadStream}.
    */
-  public static FlowableReadStream<Buffer, Buffer> bufferReadStream(ReadStream<Buffer> bufferStream,
+  public static FlowableReadStream<Buffer, Buffer> bufferReadStream(
+      ReadStream<Buffer> bufferStream,
       RecordParser recordParser) {
     FlowableReadStream<Buffer, Buffer> flowableStream = new FlowableReadStream<>();
     flowableStream.backing = new BufferReadStreamSubscription(bufferStream, buff -> buff, recordParser);
@@ -42,12 +42,12 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
   }
 
   /**
-   * Creates a {@link Flowable<Buffer>} from the underlying
-   * {@link ReadStream<Buffer>} and applies OS-independent new line
-   * {@link RecordParser} to the stream before it's emitted as flowable stream.
+   * Creates {@link Flowable} from the underlying {@link ReadStream} and applies
+   * OS-independent new line {@link RecordParser} to the stream before it's emitted as Flowable
+   * stream.
    * 
-   * @param bufferStream
-   * @return
+   * @param bufferStream the underlying {@link Buffer} stream.
+   * @return a {@link Buffer} {@link Flowable} that is backed by {@link ReadStream}.
    */
   public static FlowableReadStream<Buffer, Buffer> newLineDelimitedReadStream(ReadStream<Buffer> bufferStream) {
     FlowableReadStream<Buffer, Buffer> flowableStream = new FlowableReadStream<>();
@@ -57,12 +57,11 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
   }
 
   /**
-   * Creates a {@link Flowable<Buffer>} from the underlying
-   * {@link ReadStream<Buffer>} and applies UNIX new line {@link RecordParser}
-   * to the stream before it's emitted as flowable stream.
+   * Creates a {@link Flowable} from the underlying {@link ReadStream} and applies
+   * UNIX new line {@link RecordParser} to the stream before it's emitted as Flowable stream.
    * 
-   * @param bufferStream
-   * @return
+   * @param bufferStream the underlying {@link Buffer} stream.
+   * @return a {@link Buffer} {@link Flowable} that is backed by {@link ReadStream}.
    */
   public static FlowableReadStream<Buffer, Buffer> newLineUnixDelimitedReadStream(ReadStream<Buffer> bufferStream) {
     FlowableReadStream<Buffer, Buffer> flowableStream = new FlowableReadStream<>();
@@ -73,12 +72,11 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
   }
 
   /**
-   * Creates a {@link Flowable<Buffer>} from the underlying
-   * {@link ReadStream<Buffer>} and applies Windows new line
-   * {@link RecordParser} to the stream before it's emitted as flowable stream.
+   * Creates a {@link Flowable} from the underlying {@link ReadStream} and applies
+   * Windows new line {@link RecordParser} to the stream before it's emitted as flowable stream.
    * 
-   * @param bufferStream
-   * @return
+   * @param bufferStream the underlying {@link Buffer} stream.
+   * @return a {@link Buffer} {@link Flowable} that is backed by {@link ReadStream}.
    */
   public static FlowableReadStream<Buffer, Buffer> newLineWindowsDelimitedReadStream(ReadStream<Buffer> bufferStream) {
     FlowableReadStream<Buffer, Buffer> flowableStream = new FlowableReadStream<>();
@@ -89,12 +87,12 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
   }
 
   /**
-   * Creates a {@link Flowable<R>} from the underlying {@link ReadStream<T>},
-   * applying {@link Function<T, R>} to each emitted element by the stream.
+   * Creates a {@link Flowable} from the underlying {@link ReadStream}, applying
+   * {@link Function} which is applied to each emitted element of the stream.
    * 
-   * @param stream
-   * @param mapper
-   * @return
+   * @param stream the underlying {@link ReadStream}.
+   * @param mapper a mapper function that is used when processing the stream.
+   * @return a generic {@link Flowable} that is backed by {@link ReadStream}.
    */
   public static <T, R> FlowableReadStream<T, R> genericReadStream(ReadStream<T> stream, Function<T, R> mapper) {
     FlowableReadStream<T, R> flowableStream = new FlowableReadStream<>();
@@ -103,11 +101,11 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
   }
 
   /**
-   * Creates a {@link Flowable<R>} from the underlying {@link ReadStream<T>},
-   * applying {@link Function<T, R>} to each emitted element by the stream.
+   * Creates a {@link Flowable} from the underlying {@link ReadStream}, applying
+   * {@link Function} which is applied to each emitted element of the stream.
    * 
-   * @param stream
-   * @return
+   * @param stream the underlying {@link ReadStream}.
+   * @return a generic identity {@link Flowable} that is backed by {@link ReadStream}.
    */
   public static <T> FlowableReadStream<T, T> genericReadStream(ReadStream<T> stream) {
     FlowableReadStream<T, T> flowableStream = new FlowableReadStream<>();
@@ -125,16 +123,15 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
 
   /**
    * @author (Juraj Zachar) juraj.zachar@gmail.com
-   *
    */
   private static class BufferReadStreamSubscription extends ReadStreamSubscription<Buffer, Buffer> {
 
     transient RecordParser recordParser;
 
     /**
-     * @param stream
-     * @param mapper
-     * @param recordParser
+     * @param stream the underlying {@link ReadStream}.
+     * @param mapper a mapper function that is used when processing the stream.
+     * @param recordParser a {@link RecordParser} used to process the stream.
      */
     public BufferReadStreamSubscription(ReadStream<Buffer> stream, Function<Buffer, Buffer> mapper,
         RecordParser recordParser) {
@@ -142,15 +139,6 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
       this.recordParser = recordParser;
       recordParser.setOutput(this::handle);
     }
-
-    // /**
-    // * @param stream
-    // * @param function
-    // */
-    // public BufferReadStreamSubscription(ReadStream<Buffer> stream,
-    // Function<Buffer, Buffer> function) {
-    // this(stream, function, createLineParser(data -> {}));
-    // }
 
     private static final long serialVersionUID = 8931185648263744473L;
 
@@ -166,9 +154,11 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
   }
 
   /**
-   * @author (Juraj Zachar) juraj.zachar@gmail.com
+   * A backing {@link Subscription} for {@link FlowableReadStream}.
+   * @param <T> input type.
+   * @param <R> output type.
    *
-   * @param <T>
+   * @author (Juraj Zachar) juraj.zachar@gmail.com
    */
   private static class ReadStreamSubscription<T, R> extends AtomicLong
       implements Handler<T>, Subscription, Subscriber<R> {
@@ -181,8 +171,8 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
     volatile boolean paused = true;
 
     /**
-     * @param stream
-     * @param mapper
+     * @param stream the underlying {@link ReadStream}.
+     * @param mapper a mapper function that is used when processing the stream.
      */
     ReadStreamSubscription(ReadStream<T> stream, Function<T, R> mapper) {
       stream.pause();
@@ -222,7 +212,8 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
       long requested = n;
       if (n == Long.MAX_VALUE) {
         set(n);
-      } else {
+      }
+      else {
         requested = addAndGet(n);
       }
       if (requested > 0) {
@@ -269,23 +260,21 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
   }
 
   /**
-   * Creates a {@link RecordParser} that delimits with the given end of line
-   * symbol
+   * Creates a {@link RecordParser} that delimits with the given end of line symbol
    * 
-   * @param dataHandler
-   * @return
+   * @param endOfLineSymbol system-specific EOL symbol.
+   * @param dataHandler a {@link Handler} for the incoming {@link Buffer}.
+   * @return a valid {@link RecordParser}.
    */
   public static final RecordParser createLineParser(String endOfLineSymbol, Handler<Buffer> dataHandler) {
     return RecordParser.newDelimited(endOfLineSymbol, dataHandler);
   }
 
   /**
-   * OS-independent line parser.
+   * OS-independent line parser. See {@link System#lineSeparator()} for more details.
    * 
-   * See {@link System.lineSeparator()} for more details.
-   * 
-   * @param dataHandler
-   * @return
+   * @param dataHandler a {@link Handler} for the incoming {@link Buffer}.
+   * @return a valid {@link RecordParser}.
    */
   public static final RecordParser createLineParser(Handler<Buffer> dataHandler) {
     return RecordParser.newDelimited(System.lineSeparator(), dataHandler);
