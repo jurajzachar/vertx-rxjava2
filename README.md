@@ -1,3 +1,6 @@
+
+[![Build Status](https://travis-ci.org/jurajzachar/vertx-rxjava2.svg?branch=master)](https://travis-ci.org/jurajzachar/vertx-rxjava2)
+
 # Vert.X + RxJava 2
 Interim solution to adapt Vert.X ReadStream to Rxjva2's Flowable. Use Vert.X EventBus to subscribe multiple subscribers to source Flowable.
 
