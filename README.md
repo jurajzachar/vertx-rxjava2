@@ -3,11 +3,11 @@ Interim solution to adapt Vert.X ReadStream to Rxjva2's Flowable. Use Vert.X Eve
 
 # Dependencies
 
- * Vert.X 3.4.x
+ * Vert.X 3.5.x
  * RxJava2 2.1.x(latest)
 
 # Build
-    mvn clean intall
+    mvn clean install
 
 # Maven
     <dependency>
