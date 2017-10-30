@@ -13,11 +13,27 @@ Interim solution to adapt Vert.X ReadStream to Rxjva2's Flowable. Use Vert.X Eve
     mvn clean install
 
 # Maven
-    <dependency>
-      <groupId>com.blueskiron</groupId>
-      <artifactId>vertx-rxjava2</artifactId>
-      <version>1.0.0</version>
-    </dependency>
+```
+   <repositories>
+    <repository>
+      <id>com.blueskiron-public-repo</id>
+      <name>com.blueskiron maven public</name>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <url>https://raw.githubusercontent.com/jurajzachar/com.blueskiron-public-repo/releases</url>
+    </repository>
+   </repositories>
+  
+   <dependency>
+     <groupId>com.blueskiron</groupId>
+     <artifactId>vertx-rxjava2</artifactId>
+     <version>1.0.0</version>
+   </dependency>
+```
 
 # Example: [FlowableReadStream](https://github.com/jurajzachar/vertx-rxjava2/blob/master/src/main/java/com/blueskiron/vertx/rxjava2/FlowableReadStream.java)
 Simply wrap [ReadStream](http://reactivex.io/RxJava/2.x/javadoc/) and use normal [Flowable](http://reactivex.io/RxJava/2.x/javadoc/):
