@@ -1,7 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.blueskiron</groupId>
+  <parent>
+    <artifactId>com.blueskiron-root</artifactId>
+    <groupId>com.blueskiron</groupId>
+    <version>1.1.0</version>
+  </parent>
+
   <artifactId>vertx-rxjava2</artifactId>
   <version>1.1.1-SNAPSHOT</version>
 
@@ -12,7 +17,7 @@
     <vertx.version>3.5.0</vertx.version>
     <rxjava2.version>2.1.2</rxjava2.version>
   </properties>
-
+  
   <dependencies>
     <dependency>
       <groupId>io.vertx</groupId>
@@ -55,13 +60,6 @@
       <version>2.8.1</version>
     </dependency>
   </dependencies>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>synergian-repo</id>
-      <url>https://raw.github.com/synergian/wagon-git/releases</url>
-    </pluginRepository>
-  </pluginRepositories>
 
   <build>
     <plugins>
@@ -124,21 +122,35 @@
         </executions>
       </plugin>
     </plugins>
-    <extensions>
-      <extension>
-        <groupId>ar.com.synergian</groupId>
-        <artifactId>wagon-git</artifactId>
-        <version>0.2.5</version>
-      </extension>
-    </extensions>
   </build>
-
-  <distributionManagement>
+  <!-- consume from hosted git repos -->
+  <repositories>
+    <!--releases -->
     <repository>
-      <id>com.blueskiron-public-repo</id>
-      <name>com.blueskiron maven public</name>
-      <url>git:releases://git@github.com:jurajzachar/com.blueskiron-public-repo.git</url>
+      <id>com.blueskiron-public-repo-RELEASES</id>
+      <name>com.blueskiron public maven repo releases</name>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <url>https://raw.githubusercontent.com/jurajzachar/com.blueskiron-public-repo/releases</url>
     </repository>
-  </distributionManagement>
+    <!--snapshots -->
+    <repository>
+      <id>com.blueskiron-public-repo-SNAPSHOTS</id>
+      <name>com.blueskiron public maven repo snapshots</name>
+      <layout>default</layout>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <url>https://raw.githubusercontent.com/jurajzachar/com.blueskiron-public-repo/snaphots</url>
+    </repository>
+  </repositories>
 
 </project>
