@@ -77,12 +77,6 @@
         <version>3.0.2</version>
         <executions>
           <execution>
-            <!-- append test jar -->
-            <goals>
-              <goal>test-jar</goal>
-            </goals>
-          </execution>
-          <execution>
             <id>default-jar</id>
             <configuration>
               <archive>

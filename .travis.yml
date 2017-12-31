@@ -8,4 +8,4 @@ notifications:
     recipients:
       - juraj.zachar@gmail.com
 
-script: mvn clean verify deploy 
+script: mvn clean verify package 

@@ -1,5 +1,8 @@
 package com.blueskiron.vertx.rxjava2;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Function;
 
@@ -164,11 +167,11 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
       implements Handler<T>, Subscription, Subscriber<R> {
     private static final long serialVersionUID = 6961788438854551704L;
     private final Function<T, R> mapper;
-    final ReadStream<T> stream;
-    final UnicastProcessor<R> processor = UnicastProcessor.create();
-    Subscriber<? super R> child;
-    Subscription proxy;
-    volatile boolean paused = true;
+    protected final ReadStream<T> stream;
+    protected final UnicastProcessor<R> processor = UnicastProcessor.create();
+    private Subscriber<? super R> child;
+    protected Subscription proxy;
+    private volatile boolean paused = true;
 
     /**
      * @param stream the underlying {@link ReadStream}.
@@ -256,7 +259,17 @@ public class FlowableReadStream<T, R> extends Flowable<R> {
     public void onComplete() {
       child.onComplete();
     }
+    
+    //shut up findbugs and problems with non-transient / non-serializable fields...
+    private void writeObject(ObjectOutputStream stream)
+        throws IOException {
+    stream.defaultWriteObject();
+    }
 
+    private void readObject(ObjectInputStream stream)
+        throws IOException, ClassNotFoundException {
+    stream.defaultReadObject();
+    }
   }
 
   /**
