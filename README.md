@@ -27,11 +27,11 @@ Interim solution to adapt Vert.X ReadStream to Rxjva2's Flowable. Use Vert.X Eve
       <url>https://raw.githubusercontent.com/jurajzachar/com.blueskiron-public-repo/releases</url>
     </repository>
    </repositories>
-  
+
    <dependency>
      <groupId>com.blueskiron</groupId>
      <artifactId>vertx-rxjava2</artifactId>
-     <version>1.0.0</version>
+     <version>1.1.1</version>
    </dependency>
 ```
 
